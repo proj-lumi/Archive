@@ -1,0 +1,22 @@
+services:
+  minecraft:
+    container_name: minecraft
+    image: itzg/minecraft-bedrock-server
+    environment:
+      - EULA=true
+      - SERVER_NAME="StephxGuel Hideout"
+      - GAMEMODE=survival
+      - DIFFICULTY=easy
+      - LEVEL_NAME=bondingworld
+      - ONLINE_MODE=false
+    ports:
+      - 19132:19132/udp
+    volumes:
+      - /srv/portainer/minecraft:/data
+
+  playit:
+    container_name: playit
+    image: ghcr.io/playit-cloud/playit-agent:0.17
+    network_mode: host
+    environment:
+      - SECRET_KEY=${SECRET_KEY}

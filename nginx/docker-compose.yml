@@ -1,0 +1,11 @@
+services:
+  nginx:
+    image: "jc21/nginx-proxy-manager:latest"
+    container_name: nginx
+    restart: unless-stopped
+    environment:
+      TZ: "Asia/Manila"
+    network_mode: host
+    volumes:
+      - /srv/portainer/nginx/data:/data
+      - /srv/portainer/nginx/letsencrypt:/etc/letsencrypt

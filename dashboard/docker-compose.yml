@@ -1,0 +1,25 @@
+services:
+  nginx:
+    image: lscr.io/linuxserver/nginx:latest
+    container_name: dashboard
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Manila
+    volumes:
+      - /srv/portainer/dasherr/www:/config/www
+    ports:
+      - 8041:80
+      # - 543:443
+    restart: always
+
+  glances:
+    image: nicolargo/glances:latest
+    container_name: glances
+    restart: unless-stopped
+    network_mode: host
+    pid: host
+    environment:
+      - GLANCES_OPT=-w
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
