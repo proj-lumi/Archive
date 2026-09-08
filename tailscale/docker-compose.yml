@@ -1,7 +1,7 @@
 services:
   tailscale:
     image: tailscale/tailscale:latest
-    container_name: tailscaled
+    container_name: tailscale
     hostname: archive
     network_mode: host
     environment:
