@@ -20,11 +20,8 @@ services:
       # Do not edit the next line. If you want to change the media storage location on your system, edit the value of UPLOAD_LOCATION in the .env file
       - ${UPLOAD_LOCATION}:/data
       - /etc/localtime:/etc/localtime:ro
-    environment:
-      TZ: ${TZ}
-      DB_PASSWORD: ${DB_PASSWORD}
-      DB_USERNAME: ${DB_USERNAME}
-      DB_DATABASE_NAME: ${DB_DATABASE_NAME}
+    env_file:
+      - stack.env
     ports:
       - "2283:2283"
     depends_on:
@@ -44,11 +41,8 @@ services:
     #   service: cpu # set to one of [armnn, cuda, rocm, openvino, openvino-wsl, rknn] for accelerated inference - use the `-wsl` version for WSL2 where applicable
     volumes:
       - model-cache:/cache
-    environment:
-      TZ: ${TZ}
-      DB_PASSWORD: ${DB_PASSWORD}
-      DB_USERNAME: ${DB_USERNAME}
-      DB_DATABASE_NAME: ${DB_DATABASE_NAME}
+    env_file:
+      - stack.env
     restart: always
     healthcheck:
       disable: false
